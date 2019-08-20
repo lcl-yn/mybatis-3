@@ -15,9 +15,6 @@
  */
 package org.apache.ibatis.submitted.permissions;
 
-import java.io.Reader;
-import java.util.List;
-
 import org.apache.ibatis.BaseDataTest;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -26,6 +23,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.io.Reader;
+import java.util.List;
 
 class PermissionsTest {
 
@@ -91,7 +91,7 @@ class PermissionsTest {
       }
 
       if (!readFound) {
-        Assertions.fail();
+        Assertions.fail("报错");
       }
     }
   }

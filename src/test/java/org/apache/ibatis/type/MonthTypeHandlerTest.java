@@ -15,13 +15,14 @@
  */
 package org.apache.ibatis.type;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import org.apache.ibatis.executor.result.ResultMapException;
+import org.junit.jupiter.api.Test;
 
 import java.time.Month;
 
-import org.apache.ibatis.executor.result.ResultMapException;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -47,8 +48,8 @@ class MonthTypeHandlerTest extends BaseTypeHandlerTest {
 
     when(rs.getInt("column")).thenReturn(0);
     try {
-      TYPE_HANDLER.getResult(rs, "column");
-      fail();
+      Month column = TYPE_HANDLER.getResult(rs, "column");
+      fail(column.toString());
     } catch (ResultMapException e) {
       assertEquals("Error attempting to get column 'column' from result set.  Cause: java.time.DateTimeException: Invalid value for MonthOfYear: 0", e.getMessage());
     }
@@ -70,8 +71,9 @@ class MonthTypeHandlerTest extends BaseTypeHandlerTest {
 
     when(rs.getInt(1)).thenReturn(0);
     try {
-      TYPE_HANDLER.getResult(rs, 1);
-      fail();
+      Month result = TYPE_HANDLER.getResult(rs, 1);
+      fail(result.toString());
+
     } catch (ResultMapException e) {
       assertEquals("Error attempting to get column #1 from result set.  Cause: java.time.DateTimeException: Invalid value for MonthOfYear: 0", e.getMessage());
     }
@@ -94,7 +96,7 @@ class MonthTypeHandlerTest extends BaseTypeHandlerTest {
     when(cs.getInt(1)).thenReturn(0);
     try {
       TYPE_HANDLER.getResult(cs, 1);
-      fail();
+      fail("报错");
     } catch (ResultMapException e) {
       assertEquals("Error attempting to get column #1 from callable statement.  Cause: java.time.DateTimeException: Invalid value for MonthOfYear: 0", e.getMessage());
     }

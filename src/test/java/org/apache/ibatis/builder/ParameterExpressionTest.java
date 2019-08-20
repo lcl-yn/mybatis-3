@@ -15,9 +15,10 @@
  */
 package org.apache.ibatis.builder;
 
-import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.Map;
 
 class ParameterExpressionTest {
 
@@ -128,8 +129,8 @@ class ParameterExpressionTest {
   @Test
   void invalidOldJdbcTypeFormat() {
     try {
-      new ParameterExpression("id:");
-      Assertions.fail();
+      ParameterExpression parameterExpression = new ParameterExpression("id:");
+      Assertions.fail(parameterExpression.getClass().getName());
     } catch (BuilderException e) {
       Assertions.assertTrue(e.getMessage().contains("Parsing error in {id:} in position 3"));
     }
@@ -138,8 +139,8 @@ class ParameterExpressionTest {
   @Test
   void invalidJdbcTypeOptUsingExpression() {
     try {
-      new ParameterExpression("(expression)+");
-      Assertions.fail();
+      ParameterExpression parameterExpression = new ParameterExpression("(expression)+");
+      Assertions.fail(parameterExpression.getClass().getName());
     } catch (BuilderException e) {
       Assertions.assertTrue(e.getMessage().contains("Parsing error in {(expression)+} in position 12"));
     }

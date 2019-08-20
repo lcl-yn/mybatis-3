@@ -15,11 +15,6 @@
  */
 package org.apache.ibatis.submitted.array_type_handler;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
-import java.io.Reader;
-
 import org.apache.ibatis.BaseDataTest;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -27,6 +22,11 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.Reader;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class ArrayTypeHandlerTest {
 
@@ -59,7 +59,7 @@ public class ArrayTypeHandlerTest {
       assertEquals(1, usersInDatabase);
 
       Integer nicknameCount = mapper.getNicknameCount();
-      assertEquals(2, nicknameCount);
+      assertEquals(java.util.Optional.of(2), nicknameCount);
     }
   }
 
